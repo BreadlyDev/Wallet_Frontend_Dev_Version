@@ -5,6 +5,7 @@ export const App = () => {
 
     return (
         <div>
+            <div>test</div>
             <div>{count}</div>
             <button type="button" onClick={() => setCount((prevState) => prevState + 1)}>
                 +
