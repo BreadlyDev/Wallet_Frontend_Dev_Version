@@ -17,12 +17,16 @@
       margin: 0 auto;
       padding: 15px  10px;
       text-align: start;
-      display: flex;
-      align-items: center;
-      gap: 15px;
+
       width: 236px;
       height: 62px;
       flex-shrink: 0;
+
+      >a{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
     }
 
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import styles from './NavItem.module.scss';
 
 interface NavItemProps {
@@ -10,11 +10,12 @@ interface NavItemProps {
     icon: string;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ to, children, isActive, onClick, icon }) => {
+const NavItem: React.FC<NavItemProps> = ({to, children, isActive, onClick, icon}) => {
     return (
         <li className={isActive ? `${styles.NavItem} ${styles.active}` : styles.NavItem} onClick={onClick}>
-            <img src={icon} alt="icons fur navlinks" />
-            <NavLink to={to}>{children}</NavLink>
+
+            <NavLink to={to}>
+                <img src={icon} alt="icons fur navlinks"/>{children}</NavLink>
         </li>
     );
 };
