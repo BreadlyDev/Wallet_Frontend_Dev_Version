@@ -1,15 +1,29 @@
-.Logo{
+@font-face {
+  font-family: 'OCR'; /* The name you want to use for this font */
+  src: url('../../assets/fonts/OCR.TTF') format('truetype'); /* URL to the TTF font file */
+}
+
+
+.Logo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  h1{
+
+  h1 {
     font-size: 40px;
     font-weight: 400;
+    font-family: 'OCR', serif !important;
+
     color: #1C274C;
+
   }
-  h2{
+
+  h2 {
     font-size: 32px;
     color: #714DBD;;
+    font-family: 'OCR', serif !important;
+    
+
     font-weight: 400;
   }
 }
