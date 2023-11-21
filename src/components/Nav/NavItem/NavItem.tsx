@@ -1,13 +1,24 @@
-import React, { ReactNode } from "react";
-import { NavLink, NavLinkProps } from "react-router-dom";
+// NavItem.tsx
 
-type NavItemProps = NavLinkProps & {
-    children: ReactNode;
-    to: string; // Исправлено на строковый тип (string)
-};
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styles from './NavItem.module.scss';
 
-const NavItem: React.FC<NavItemProps> = ({ children, to, ...rest }) => {
-    return <NavLink {...rest} to={to}>{children}</NavLink>;
+interface NavItemProps {
+    to: string;
+    children: React.ReactNode;
+    isActive: boolean;
+    onClick: () => void;
+    icon: string;
+}
+
+const NavItem: React.FC<NavItemProps> = ({ to, children, isActive, onClick, icon }) => {
+    return (
+        <li className={isActive ? `${styles.NavItem} ${styles.active}` : styles.NavItem} onClick={onClick}>
+            <img src={icon} alt="icons fur navlinks" />
+            <Link to={to}>{children}</Link>
+        </li>
+    );
 };
 
 export default NavItem;

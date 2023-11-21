@@ -1,0 +1,31 @@
+.Nav {
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100vh;
+  box-shadow: 0 0 15px rgba(128, 128, 128, 0.16);
+  padding: 20px 0;
+  background-color: white;
+
+
+  ul {
+
+    padding-top: 50px;
+
+    li {
+      margin: 0 auto;
+      padding: 15px  10px;
+      text-align: start;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 236px;
+      height: 62px;
+      flex-shrink: 0;
+    }
+
+  }
+
+
+}
