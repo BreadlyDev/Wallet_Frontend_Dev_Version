@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .Layout {
   font-size: 16px;
   display: flex;
@@ -10,5 +11,13 @@
     height: 100vh;
     overflow-y: scroll;
 
+=======
+.Layout{
+  display: flex;
+  >main{
+    max-height: 100vh;
+    overflow: auto;
+    padding: 50px;
+>>>>>>> 041d84b4b4b36261bf5f35c4e55c4766769ea36e
   }
 }
