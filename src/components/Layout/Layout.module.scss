@@ -1,0 +1,8 @@
+.Layout{
+  display: flex;
+  >main{
+    max-height: 100vh;
+    overflow: auto;
+    padding: 50px;
+  }
+}
