@@ -8,7 +8,7 @@ const SignUp: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const {store} = useContext(Context)
+  const {authStore} = useContext(Context).stores
 
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +25,7 @@ const SignUp: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    store.register(username, email, password)
+    authStore.register(username, email, password)
   };
 
   return (
