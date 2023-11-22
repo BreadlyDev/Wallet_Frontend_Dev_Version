@@ -1,0 +1,29 @@
+.list {
+  display: flex;
+  align-items: center;
+  .BalanceWidget {
+    background: rgb(87, 54, 158);
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 30px;
+    margin: 10px;
+    border-radius: 20px;
+    background: linear-gradient(
+      50deg,
+      rgba(87, 54, 158, 1) 0%,
+      rgba(113, 77, 189, 1) 100%
+    );
+    span {
+      color: #fff;
+    }
+    :first-child {
+      font-size: 14px;
+    }
+    :last-child {
+      font-size: 20px;
+      margin: 5px;
+    }
+  }
+}

@@ -1,26 +1,15 @@
-.navItem {
-  text-transform: capitalize;
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
+.NavItem {
+  > a {
+    color: #3E3E3E;
 
-  color: #3E3E3E;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-
-  img{
-    width: 25px;
-    height: 30px;
   }
-
 }
 
 .active {
   color: #749BFF;
   border-radius: 10px;
   border-right: 10px solid #714DBD;
-  background: #EFEFEF;
+  background: #efefef;
+
 
 }
