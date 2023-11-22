@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp/SignUp.tsx";
 import DemoBalance from "./pages/DemoBalance/DemoBalance.tsx";
 import Trading from "./pages/Trading/Trading.tsx";
 import Redirect from "./pages/Redirct.tsx";
+import { observer } from "mobx-react-lite";
 
 function App() {
   return (
@@ -35,4 +36,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
