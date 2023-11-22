@@ -3,30 +3,6 @@ import React from "react";
 const CoinChart: React.FC = () => {
 
 
-    const data = [
-        {"theta": "0.907217", "nem": "0.034401", "ontology": "0.206859", "lto-network": "0.063617"},
-        {
-            "tenset": "0.566383",
-            "bitcoin": "36502.95",
-            "status": "0.039676",
-            "alpha-finance-lab": "0.086658",
-            "qbao": "0.001838",
-            "whale": "0.526911",
-            "super-bitcoin": "0.420118",
-            "hedera-hashgraph": "0.059734",
-            "nftb": "0.010138",
-            "zeroswap": "0.020869",
-            "sake-token": "0.001033",
-            "my-defi-pet": "0.043900",
-            "fetch": "0.538367",
-            "iota": "0.174779",
-            "clover": "0.037763",
-            "revv": "0.012204",
-            "ferrum-network": "0.079977",
-            "tezos": "0.783409"
-        },
-        {"oneledger": "0.003766", "oxen": "0.075307"}]
-    console.log(data)
 
     return <div>
         <p>
