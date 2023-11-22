@@ -3,7 +3,8 @@ import React from "react";
 const DemoBalance: React.FC = () => {
     return (
         <div>
-            demo
+            demo balance
+
         </div>
     )
 }
