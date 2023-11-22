@@ -1,5 +1,6 @@
 import React from 'react'
 import cla from './Login.module.scss'
+import { Link } from 'react-router-dom'
 
 const Login: React.FC = () => {
   return (
@@ -21,7 +22,7 @@ const Login: React.FC = () => {
                 <button type='submit' className={cla.submit}>Sing in</button>
                 <button type="button" className={cla.google}>Google</button>
             </div>
-            <a href='#' className={cla.create}>Create new account</a>
+            <Link to='/signup' className={cla.create}>Create new account</Link>
         </form>
     </div>    
   )
