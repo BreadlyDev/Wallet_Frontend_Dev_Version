@@ -1,11 +1,11 @@
-import CoinIcon from "./CoinIcon";
-
+import CoinCard from "./CoinCard";
+import classes from './Coin.module.scss'
 export default function CoinList() {
   const coins = ["BTC", "BTM", "CRD", "DOGE", "ETH", "ICX", "IFC", "RVC", "STM"]
   return (
-    <div>
+    <div className={classes.list}>
       {coins.map((item)=>{
-        return <CoinIcon coin={item}/>
+        return <CoinCard coin={item}/>
       })}
     </div>
   )
