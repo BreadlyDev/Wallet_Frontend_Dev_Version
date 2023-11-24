@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { decrementBalance, incrementBalance } from '../services/CoinsService';
+import { decrementBalance, incrementBalance } from '../services/BalanceService';
 
 class BalanceStore {
   currentBalance = 0
