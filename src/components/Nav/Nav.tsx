@@ -20,7 +20,7 @@ const Nav: React.FC = () => {
         {to: '/', label: 'Home', icon: home},
         {to: '/demo-balance', label: 'Demo balance', icon: dollar},
         {to: '/trading', label: 'Trading', icon: card },
-        {to: '/login', label: 'Prices', icon: price},
+        {to: '/prices/BTC', label: 'Prices', icon: price},
         {to: '/profile', label: 'Profile', icon: user},
     ];
 

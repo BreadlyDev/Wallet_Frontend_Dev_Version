@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Chart from "./Chart";
+import { useParams } from "react-router-dom";
 
 interface ICoinChart {
   s: string;
@@ -10,15 +11,16 @@ interface ICoinChart {
 const CoinChart = () => {
   const [dataList, setDataList] = useState<ICoinChart[]>([]);
   const [dataFullList, setDataFullList] = useState<ICoinChart[]>([]);
-
+  const params = useParams();
+  
   useEffect(() => {
     const socket = new WebSocket(
-      "wss://wallet-dev-server-dev-sqsk.2.ie-1.fl0.io/prices/?coin_name=ETHUSDT"
+      `wss://wallet-dev-server-dev-sqsk.2.ie-1.fl0.io/prices/?coin_name=${params.id}USDT`
     );
     socket.onmessage = (event) => {
       const receivedData: ICoinChart = JSON.parse(event.data);
       setDataList((prevDataList) => [...prevDataList, receivedData]);
-    //   console.log(receivedData);
+      //   console.log(receivedData);
     };
 
     return () => {
@@ -44,7 +46,7 @@ const CoinChart = () => {
     const { E, c } = parsedItem;
     const value = Number(c);
     const timestamp = Number(E);
-    const a = { time:timestamp, value };
+    const a = { time: timestamp, value };
 
     return a;
   });
@@ -53,7 +55,7 @@ const CoinChart = () => {
     <div>
       <h1>WebSocket Data Display</h1>
       <div style={{ color: "white" }}>
-        <Chart data={trade}/>
+        <Chart data={trade} />
       </div>
     </div>
   );
