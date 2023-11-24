@@ -13,6 +13,7 @@ import Redirect from "./pages/Redirct.tsx";
 import { observer } from "mobx-react-lite";
 
 function App() {
+
   return (
     <>
       {localStorage.getItem("token") ? (
@@ -34,6 +35,7 @@ function App() {
       )}
     </>
   );
+
 }
 
 export default observer(App);
