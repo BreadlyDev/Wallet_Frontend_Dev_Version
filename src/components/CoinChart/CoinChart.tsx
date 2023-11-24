@@ -18,6 +18,7 @@ const CoinChart = () => {
     socket.onmessage = (event) => {
       const receivedData: ICoinChart = JSON.parse(event.data);
       setDataList((prevDataList) => [...prevDataList, receivedData]);
+    //   console.log(receivedData);
     };
 
     return () => {
@@ -35,12 +36,15 @@ const CoinChart = () => {
       return updatedDataList;
     });
   }, [dataList]);
+  // console.log(dataFullList);
 
   const trade = dataFullList.map((item) => {
-    const { E, c } = item;
+    //@ts-ignore
+    const parsedItem = JSON.parse(item);
+    const { E, c } = parsedItem;
     const value = Number(c);
     const timestamp = Number(E);
-    const a = { time: timestamp, value };
+    const a = { time:timestamp, value };
 
     return a;
   });
@@ -49,7 +53,7 @@ const CoinChart = () => {
     <div>
       <h1>WebSocket Data Display</h1>
       <div style={{ color: "white" }}>
-        <Chart data={trade} />
+        <Chart data={trade}/>
       </div>
     </div>
   );
