@@ -1,8 +1,6 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import Chart from "./Chart";
 import { useParams } from "react-router-dom";
-import { Context } from "../../main";
-import { observer } from "mobx-react-lite";
 
 interface ICoinChart {
   s: string;
@@ -14,7 +12,6 @@ const CoinChart = () => {
   const [dataList, setDataList] = useState<ICoinChart[]>([]);
   const [dataFullList, setDataFullList] = useState<ICoinChart[]>([]);
   const params = useParams();
-  const { coinStore } = useContext(Context).stores;
   useEffect(() => {
     const socket = new WebSocket(
       `wss://wallet-dev-server-dev-sqsk.2.ie-1.fl0.io/prices/?coin_name=${params.id}USDT`
@@ -55,9 +52,7 @@ const CoinChart = () => {
   });
 
   return (
-    <div>
-      <h1>WebSocket Data Display</h1>
-      <div>{coinStore.price}$</div>
+    <div>   
       <div style={{ color: "white" }}>
         <Chart data={trade} />
       </div>
@@ -65,4 +60,4 @@ const CoinChart = () => {
   );
 };
 
-export default observer(CoinChart);
+export default CoinChart;
