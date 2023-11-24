@@ -1,5 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import { createChart, IChartApi, ISeriesApi } from "lightweight-charts";
+import { Context } from "../../main";
+import { observer } from "mobx-react-lite";
 
 interface ChartProps {
   data: { time: number; value: number }[];
@@ -8,7 +10,7 @@ interface ChartProps {
 const Chart: React.FC<ChartProps> = ({ data }) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   let chart: IChartApi | null = null;
-
+  const { coinStore } = useContext(Context).stores;
   useEffect(() => {
     const uniqueData = Array.from(
       new Map(data.map((item) => [item.time, item])).values()
@@ -32,7 +34,7 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
       console.log(formattedData);
 
       lineSeries.setData(formattedData);
-
+      coinStore.setPrice(formattedData[formattedData.length - 1]?.value);
       return () => {
         if (chart) {
           chart.remove();
@@ -45,4 +47,4 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
   return <div ref={chartContainerRef} />;
 };
 
-export default Chart;
+export default observer(Chart);

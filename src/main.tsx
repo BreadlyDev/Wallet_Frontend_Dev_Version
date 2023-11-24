@@ -5,10 +5,12 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import authStore from "./store/authStore.ts";
 import balanceStore from "./store/balanceStore.ts";
+import coinStore from "./store/coinStore.ts";
 
 const stores = {
   authStore,
   balanceStore,
+  coinStore
 };
 export const Context = createContext({ stores });
 ReactDOM.createRoot(document.getElementById("root")!).render(
