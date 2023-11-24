@@ -31,7 +31,6 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
         time: entry.time,
         value: entry.value,
       }));
-      console.log(formattedData);
 
       lineSeries.setData(formattedData);
       coinStore.setPrice(formattedData[formattedData.length - 1]?.value);

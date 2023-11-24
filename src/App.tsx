@@ -11,7 +11,7 @@ import DemoBalance from "./pages/DemoBalance/DemoBalance.tsx";
 import Trading from "./pages/Trading/Trading.tsx";
 import Redirect from "./pages/Redirct.tsx";
 import { observer } from "mobx-react-lite";
-import Price from "./pages/Price/Price.tsx";
+import Coin from "./pages/Coin/Coin.tsx";
 
 function App() {
 
@@ -23,9 +23,9 @@ function App() {
             <Route index element={<Home />} />
             <Route path="*" element={<Redirect where="/" />} />
             <Route path={"/profile"} element={<Profile />} />
-            <Route path={"/trading"} element={<Trading />} />
+            <Route path={"/trade"} element={<Trading />} />
             <Route path={"/demo-balance"} element={<DemoBalance />} />
-            <Route path={"/prices/:id"} element={<Price/>} />
+            <Route path={"/trade/:id"} element={<Coin/>} />
           </Routes>
         </Layout>
       ) : (

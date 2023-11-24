@@ -7,7 +7,7 @@ type Props = {
 
 export default function CoinCard({coin}: Props) {
   return (
-    <Link to={"/coin"} className={classes.CoinCard}>
+    <Link to={`/trade/${coin}`} className={classes.CoinCard}>
       <CoinIcon coin={coin}/>
       <span>{coin}</span>
       <span>$ 37 324</span>
