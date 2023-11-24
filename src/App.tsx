@@ -1,7 +1,7 @@
 import './App.scss'
 import Layout from "./components/Layout/Layout.tsx";
 import Home from "./pages/Home/Home.tsx";
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Profile from "./pages/Profile/Profile.tsx";
 
 import Login from './pages/Login/Login.tsx';
@@ -16,14 +16,14 @@ function App() {
         <>
             <Layout>
                 <Routes>
-                    <Route index element={<Home/>}/>
-                    <Route path={"/profile"} element={<Profile/>}/>
+                    <Route index element={<Home />} />
+                    <Route path={"/profile"} element={<Profile />} />
 
-                    <Route path={"/login"} element={<Login/>}/>
-                    <Route path={"/signup"} element={<SignUp/>}/>
+                    <Route path={"/login"} element={<Login />} />
+                    <Route path={"/signup"} element={<SignUp />} />
 
-                    <Route path={"/trading"} element={<Trading/>}/>
-                    <Route path={"/demo-balance"} element={<DemoBalance/>}/>
+                    <Route path={"/trading"} element={<Trading />} />
+                    <Route path={"/demo-balance"} element={<DemoBalance />} />
 
                 </Routes>
             </Layout>
