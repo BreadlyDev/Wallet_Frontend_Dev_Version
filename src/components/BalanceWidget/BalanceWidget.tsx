@@ -1,25 +1,31 @@
+import { observer } from "mobx-react-lite";
 import classes from "./BalanceWidget.module.scss";
+import { Context } from "../../main";
+import { useContext } from "react";
 
 type Props = {
-  children: string;
+  value: number;
   title: string;
 };
 
-function BalanceWidget({ children, title }: Props) {
+function BalanceWidget({ value, title }: Props) {
   return (
     <div className={classes.BalanceWidget}>
       <span>{title}</span>
-      <span>{children}</span>
+      <span>${value}</span>
     </div>
   );
 }
 
-export default function BalanceWidgetList() {
+function BalanceWidgetList() {
+  const { balanceStore } = useContext(Context).stores;
   return (
     <div className={classes.list}>
-      <BalanceWidget title="Balance">$132 324</BalanceWidget>
-      <BalanceWidget title="Spent">$12 134</BalanceWidget>
-      <BalanceWidget title="Gained">$65 376</BalanceWidget>
+      <BalanceWidget title="Balance" value={balanceStore.usd} />
+      <BalanceWidget title="Spent" value={balanceStore.usd} />
+      <BalanceWidget title="Gained" value={balanceStore.usd} />
     </div>
   );
 }
+
+export default observer(BalanceWidgetList);
