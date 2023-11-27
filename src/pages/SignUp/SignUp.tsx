@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import cla from './SignUp.module.scss';
 import { Link } from 'react-router-dom';
 import { Context } from '../../main';
+import { googleService } from '../../services/AuthService';
 
 const SignUp: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -49,7 +50,7 @@ const SignUp: React.FC = () => {
         </span>
         <div className={cla.btns}>
           <button type='submit' className={cla.submit}>Sign up</button>
-          <button type="button" className={cla.google}>Google</button>
+          <button type="button" className={cla.google} onClick={googleService}>Google</button>
         </div>
         <Link to='/login' className={cla.create}>I have an account </Link>
       </form>
