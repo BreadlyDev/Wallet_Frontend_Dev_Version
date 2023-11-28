@@ -22,8 +22,8 @@ function BalanceWidgetList() {
   return (
     <div className={classes.list}>
       <BalanceWidget title="Balance" value={balanceStore.usd} />
-      <BalanceWidget title="Spent" value={balanceStore.usd} />
-      <BalanceWidget title="Gained" value={balanceStore.usd} />
+      <BalanceWidget title="Spent" value={balanceStore.spent} />
+      <BalanceWidget title="Gained" value={balanceStore.gained} />
     </div>
   );
 }
