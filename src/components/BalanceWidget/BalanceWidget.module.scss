@@ -1,6 +1,9 @@
 .list {
   display: flex;
   align-items: center;
+  background-color: #fff;
+  border-radius: 30px;
+  margin-bottom: 30px;
   .BalanceWidget {
     background: rgb(87, 54, 158);
     max-width: 200px;

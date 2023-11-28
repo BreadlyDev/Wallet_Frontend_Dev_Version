@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import { decrementBalance, incrementBalance } from "../services/BalanceService";
 
 class BalanceStore {
-  usd = 10000;
+  usd = 0;
   gained=0;
   spent=0;
   btc= 0;
@@ -11,28 +11,28 @@ class BalanceStore {
   constructor() {
     makeAutoObservable(this);
   }
-  buyCoin(coin: string, amount: number) {
-    console.log(coin, amount);
+  buyCoin(coin: string, amount: number, cost:number) {
+    console.log(coin, cost);
     
     switch (coin) {
       case "BTC":
-        this.btc += amount;
+        this.btc+=amount;;
         break;
       case "ETH":
-        this.eth += amount;
+        this.eth+=amount;
         break;
       case "DOGE":
-        this.doge += amount;
+        this.doge+=amount;
         break;
 
       default:
         break;
     }
-    this.usd-=amount
-    this.spent+=amount
+    this.usd-=cost
+    this.spent+=cost
   }
-  sellCoin(coin: string, amount: number) {
-    console.log(coin, amount);
+  sellCoin(coin: string, amount: number, cost:number) {
+    console.log(coin, cost);
     
     switch (coin) {
       case "BTC":
@@ -48,8 +48,8 @@ class BalanceStore {
       default:
         break;
     }
-    this.usd+=amount
-    this.gained+=amount
+    this.usd+=cost
+    this.gained+=cost
   }
   incrementBalance(amount: number) {
     this.usd += amount;

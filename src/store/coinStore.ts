@@ -6,7 +6,7 @@ class CoinStore {
   constructor() {
     makeAutoObservable(this);
   }
-  // @action
+
   setPrice(price: number) {
     this.price = price
   }

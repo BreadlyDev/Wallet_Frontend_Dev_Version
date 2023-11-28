@@ -32,8 +32,8 @@ function CoinTrade({ coin }: Props) {
       </div>
       <div className={classes.cost}>$ {totalPrice}</div>
       <div className={classes.btns}>
-        <button onClick={() => balanceStore.buyCoin(coin, totalPrice)}>Buy</button>
-        <button onClick={() => balanceStore.sellCoin(coin, totalPrice)}>Sell</button>
+        <button onClick={() => balanceStore.buyCoin(coin, amount, totalPrice)}>Buy</button>
+        <button onClick={() => balanceStore.sellCoin(coin, amount, totalPrice)}>Sell</button>
       </div>
     </div>
   );
