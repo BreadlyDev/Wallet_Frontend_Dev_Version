@@ -3,11 +3,11 @@ import styles from './Nav.module.scss';
 import NavItem from "./NavItem/NavItem.tsx";
 import Logo from "../Logo/Logo.tsx";
 
-import card from "./../../assets/icons/card.svg"
-import dollar from "./../../assets/icons/dollar.svg"
-import home from "./../../assets/icons/Home.svg"
-import price from "./../../assets/icons/price.svg"
-import user from "./../../assets/icons/user.svg"
+import card from "../../assets/icons/card.svg"
+import dollar from "../../assets/icons/dollar.svg"
+import home from "../../assets/icons/Home.svg"
+import price from "../../assets/icons/price.svg"
+import user from "../../assets/icons/user.svg"
 
 const Nav: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState(-1);

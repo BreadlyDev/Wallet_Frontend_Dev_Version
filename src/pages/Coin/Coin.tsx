@@ -7,7 +7,6 @@ type Props = {};
 
 export default function Price({}: Props) {
   const params = useParams()
-  console.log(params.id);
   const coin:any = params.id
   
   return (

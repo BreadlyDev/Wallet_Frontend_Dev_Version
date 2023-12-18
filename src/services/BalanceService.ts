@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export async function incrementBalance(amount:number) {
+export async function asyncIncrementBalance(amount:number) {
   try{
     const res = await axios.post("", {amount})
     console.log(res);
@@ -10,7 +10,7 @@ export async function incrementBalance(amount:number) {
     
   }
 }
-export async function decrementBalance(amount:number) {
+export async function asyncDecrementBalance(amount:number) {
   try{
     const res = await axios.post("", {amount})
     console.log(res);

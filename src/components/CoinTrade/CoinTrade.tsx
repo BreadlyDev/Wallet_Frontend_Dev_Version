@@ -14,9 +14,7 @@ function CoinTrade({ coin }: Props) {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    setTotalPrice(parseFloat(Number(coinStore.price * amount).toFixed(2)));
-    console.log(totalPrice);
-    
+    setTotalPrice(parseFloat(Number(coinStore.price * amount).toFixed(2)));  
   }, [coinStore.price]);
 
   return (

@@ -1,19 +1,22 @@
 import { makeAutoObservable } from "mobx";
-import { decrementBalance, incrementBalance } from "../services/BalanceService";
+import { asyncDecrementBalance, asyncIncrementBalance } from "../services/BalanceService";
 
 class BalanceStore {
-  usd = 0;
+  usd = 100000;
   gained=0;
   spent=0;
   btc= 0;
   eth= 0;
   doge= 0;
+  status = ''
   constructor() {
     makeAutoObservable(this);
   }
-  buyCoin(coin: string, amount: number, cost:number) {
-    console.log(coin, cost);
-    
+  buyCoin(coin: string, amount: number, cost:number) {    
+    if(this.usd - cost < 0){
+      this.status = 'not enough money'      
+      return
+    }
     switch (coin) {
       case "BTC":
         this.btc+=amount;;
@@ -28,37 +31,51 @@ class BalanceStore {
       default:
         break;
     }
-    this.usd-=cost
-    this.spent+=cost
+    this.decrementBalance(cost)
+  
   }
   sellCoin(coin: string, amount: number, cost:number) {
-    console.log(coin, cost);
-    
+
     switch (coin) {
       case "BTC":
+        if(this.btc < amount){
+          this.status = "not enough btc"
+          break
+        }
         this.btc -= amount;
         break;
       case "ETH":
+        if(this.eth < amount){
+          this.status = "not enough eth"
+          break
+        }
         this.eth -= amount;
         break;
       case "DOGE":
+        if(this.doge < amount){
+          this.status = "not enough doge"
+          break
+        }
         this.doge -= amount;
         break;
 
       default:
         break;
     }
-    this.usd+=cost
-    this.gained+=cost
+    console.log(this.status);
+    
+    this.incrementBalance(cost)
   }
   incrementBalance(amount: number) {
     this.usd += amount;
-    incrementBalance(amount);
+    this.gained += amount;
+    asyncIncrementBalance(amount);
   }
 
   decrementBalance(amount: number) {
     this.usd -= amount;
-    decrementBalance(amount);
+    this.gained -= amount;
+    asyncDecrementBalance(amount);
   }
 }
 
