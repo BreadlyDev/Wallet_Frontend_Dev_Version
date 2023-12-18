@@ -40,21 +40,21 @@ class BalanceStore {
       case "BTC":
         if(this.btc < amount){
           this.status = "not enough btc"
-          break
+          return
         }
         this.btc -= amount;
         break;
       case "ETH":
         if(this.eth < amount){
           this.status = "not enough eth"
-          break
+          return
         }
         this.eth -= amount;
         break;
       case "DOGE":
         if(this.doge < amount){
           this.status = "not enough doge"
-          break
+          return
         }
         this.doge -= amount;
         break;
@@ -74,7 +74,7 @@ class BalanceStore {
 
   decrementBalance(amount: number) {
     this.usd -= amount;
-    this.gained -= amount;
+    this.spent += amount;
     asyncDecrementBalance(amount);
   }
 }
