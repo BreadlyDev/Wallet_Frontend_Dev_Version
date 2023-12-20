@@ -4,11 +4,11 @@
   flex-wrap: wrap;
 }
 .CoinCard {
-  background: rgb(87, 54, 158);
+  background: #9B42C5;
   background: linear-gradient(
     50deg,
-    rgba(87, 54, 158, 1) 0%,
-    rgba(113, 77, 189, 1) 100%
+    #9B42C5 0%,
+    #5E1382 100%
   );
   flex: 0 1 auto;
   display: flex;

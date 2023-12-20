@@ -3,12 +3,9 @@ import styles from './Nav.module.scss';
 import NavItem from "./NavItem/NavItem.tsx";
 import Logo from "../Logo/Logo.tsx";
 
-import card from "../../assets/icons/card.svg"
-import dollar from "../../assets/icons/dollar.svg"
-import home from "../../assets/icons/Home.svg"
-import price from "../../assets/icons/price.svg"
-import user from "../../assets/icons/user.svg"
-
+import explore from '../../../src/assets/icons/explore.svg';
+import profile from '../../../src/assets/icons/profile.svg';
+import swap from '../../../src/assets/icons/swap.svg';
 const Nav: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState(-1);
 
@@ -17,11 +14,9 @@ const Nav: React.FC = () => {
     };
 
     const navItems = [
-        {to: '/', label: 'Home', icon: home},
-        {to: '/demo-balance', label: 'Demo balance', icon: dollar},
-        {to: '/trade', label: 'Trading', icon: card },
-        {to: '/prices/BTC', label: 'Prices', icon: price},
-        {to: '/profile', label: 'Profile', icon: user},
+        {to: '/', label: 'Explore', icon: explore},
+        {to: '/profile', label: 'Profile', icon: profile},
+        {to: '/swap', label: 'Swap Tokens', icon: swap },
     ];
 
     return (

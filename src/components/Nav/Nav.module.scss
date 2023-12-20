@@ -4,9 +4,9 @@
   flex-direction: column;
   justify-content: flex-start;
   height: 100vh;
-  box-shadow: 0 0 15px rgba(128, 128, 128, 0.16);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.16);
   padding: 20px 0;
-  background: linear-gradient(180deg, #FFF 0%, #FFF 100%);
+  background:#251E34;
   
 
   ul {
@@ -22,7 +22,7 @@
         display: flex;
         align-items: center;
         gap: 15px;
-        color: #3E3E3E;
+        color: #fff;
         font-weight: 500;
       }
     }

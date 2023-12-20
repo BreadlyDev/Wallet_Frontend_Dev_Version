@@ -1,6 +1,6 @@
 .NavItem {
   > a {
-    color: #3E3E3E;
+    color: #ffffff;
 
   }
 }
@@ -8,8 +8,6 @@
 .active {
   color: #749BFF;
   border-radius: 10px;
-  border-right: 10px solid #714DBD;
-  background: #efefef;
-
-
+  border-right: 10px solid #fff;
+  background: #9B42C5;
 }

@@ -16,6 +16,6 @@ export default function Price({}: Props) {
         <CoinTrade coin={coin} />
       </div>
       <CoinChart />
-    </div>
+    </div> 
   );
 }

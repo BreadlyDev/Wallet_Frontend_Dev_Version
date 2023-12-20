@@ -5,7 +5,7 @@
   border-radius: 30px;
   margin-bottom: 30px;
   .BalanceWidget {
-    background: rgb(87, 54, 158);
+    background: #9b42c5;
     max-width: 200px;
     display: flex;
     flex-direction: column;
@@ -13,11 +13,7 @@
     padding: 10px 30px;
     margin: 10px;
     border-radius: 20px;
-    background: linear-gradient(
-      50deg,
-      rgba(87, 54, 158, 1) 0%,
-      rgba(113, 77, 189, 1) 100%
-    );
+    background:linear-gradient(50deg, #9b42c5 0%, #5e1382 100%);
     span {
       color: #fff;
     }

@@ -1,10 +1,6 @@
 .CoinTrade {
   background: rgb(87, 54, 158);
-  background: linear-gradient(
-    50deg,
-    rgba(87, 54, 158, 1) 0%,
-    rgba(113, 77, 189, 1) 100%
-  );
+  background: linear-gradient(50deg, #9b42c5 0%, #5e1382 100%);
   padding: 10px;
   border-radius: 10px;
   display: flex;
@@ -26,31 +22,23 @@
     display: flex;
     justify-content: space-between;
     button {
-      background: rgb(87, 54, 158);
-      background: linear-gradient(
-        50deg,
-        rgba(87, 54, 158, 1) 0%,
-        rgba(113, 77, 189, 1) 100%
-      );
+      background: #9b42c5;
+      background: linear-gradient(50deg, #9b42c5 0%, #5e1382 100%);
       padding: 10px 20px;
       border: 1px solid #fff;
       outline: none;
       border-radius: 8px;
       margin: 5px;
-      transition: .5s background;
+      transition: 0.5s background;
       cursor: pointer;
-      &:hover{
-        background: rgb(87, 54, 158);
-      background: linear-gradient(
-        50deg,
-        rgba(113, 77, 189, 1) 0%,
-        rgba(87, 54, 158, 1) 100%
-      );
+      &:hover {
+        background: #9b42c5;
+        background: linear-gradient(50deg, #9b42c5 0%, #5e1382 100%);
       }
     }
   }
   input {
-    background: rgb(87, 54, 158);
+    background: #9b42c5;
     border: none;
     outline: none;
     width: 60px;
