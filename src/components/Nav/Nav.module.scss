@@ -6,26 +6,29 @@
   height: 100vh;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.16);
   padding: 20px 0;
-  background:#251E34;
-  
+  background: #251e34;
 
   ul {
     padding-top: 50px;
     li {
       margin: 10px auto;
-      padding: 15px  10px;
       text-align: start;
       width: 236px;
       height: 62px;
+      border-radius: 10px;
       flex-shrink: 0;
-      >a{
+      &:hover {
+        background-color: #b97bd6;
+      }
+      > a {
+        padding: 15px 10px;
         display: flex;
         align-items: center;
         gap: 15px;
         color: #fff;
+        border-radius: 10px;
         font-weight: 500;
       }
     }
-
   }
 }
