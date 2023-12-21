@@ -1,0 +1,18 @@
+.History{
+    .tabs {
+        display: flex;
+        margin: 20px;
+        h3 {
+          padding: 20px;
+          cursor: pointer;
+        }
+        h3.active{
+          border: 1px solid #fff;
+          border-radius: 20px;
+      
+        }
+      }
+      .content{
+        padding: 30px;
+      }
+}
