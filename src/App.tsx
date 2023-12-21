@@ -7,7 +7,7 @@ import Profile from "./pages/Profile/Profile.tsx";
 import Login from "./pages/Login/Login.tsx";
 import SignUp from "./pages/SignUp/SignUp.tsx";
 
-import Trading from "./pages/Trading/Trading.tsx";
+import Swap from "./pages/Swap/Swap.tsx";
 import Redirect from "./pages/Redirct.tsx";
 import { observer } from "mobx-react-lite";
 import Coin from "./pages/Coin/Coin.tsx";
@@ -22,7 +22,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="*" element={<Redirect where="/" />} />
             <Route path={"/profile"} element={<Profile />} />
-            <Route path={"/swap"} element={<Trading />} />
+            <Route path={"/swap"} element={<Swap />} />
             <Route path={"/swap/:id"} element={<Coin/>} />
           </Routes>
         </Layout>
