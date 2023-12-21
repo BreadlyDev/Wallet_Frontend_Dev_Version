@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import classes from './ProfileWidget.module.scss'
-import Assets from './Assets';
-import History from './History/History';
+import { useState } from "react";
+import classes from "./ProfileWidget.module.scss";
+import Assets from "./Assets/Assets";
+import History from "./History/History";
 
 type Props = {};
 
 export default function ProfileWidget({}: Props) {
-  const [isAssets, setIsAssets] = useState(true)
+  const [isAssets, setIsAssets] = useState(true);
   return (
     <div className={classes.ProfileWidget}>
       <div className={classes.tabs}>
@@ -23,12 +23,8 @@ export default function ProfileWidget({}: Props) {
           History
         </h3>
       </div>
-      <hr/>
-      {isAssets?
-      <Assets/>
-      :
-      <History/>
-      }
+      <hr />
+      <div className={classes.content}>{isAssets ? <Assets /> : <History />}</div>
     </div>
   );
 }

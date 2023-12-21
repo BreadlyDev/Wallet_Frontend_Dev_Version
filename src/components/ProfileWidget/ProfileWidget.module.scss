@@ -1,5 +1,6 @@
 .ProfileWidget{
     margin: 50px;
+    min-width: 600px;
     .tabs {
         display: flex;
         margin: 20px;
@@ -12,5 +13,8 @@
           border-radius: 20px;
       
         }
+      }
+      .content{
+        padding: 30px;
       }
 }
