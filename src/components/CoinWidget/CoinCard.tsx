@@ -11,6 +11,10 @@ export default function CoinCard({coin}: Props) {
       <CoinIcon coin={coin}/>
       <span>{coin}</span>
       <span>$ 37 324</span>
+      <span className={classes.green}>0.33%</span>
+      <span className={classes.green}>0.33%</span>
+      <span className={classes.red}>0.33%</span>
+      <span>8 605 005</span>
     </Link>
   )
 }

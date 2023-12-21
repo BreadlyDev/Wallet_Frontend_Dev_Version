@@ -1,32 +1,49 @@
 .list {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   flex-wrap: wrap;
+  padding: 50px;
+  background-color: #352d41;
+  border-radius: 20px;
+}
+.tabs {
+  display: flex;
+  margin: 20px;
+  h3 {
+    padding: 20px;
+    cursor: pointer;
+  }
+  h3.active{
+    border: 1px solid #fff;
+
+  }
 }
 .CoinCard {
-  background: #9B42C5;
-  background: linear-gradient(
-    50deg,
-    #9B42C5 0%,
-    #5E1382 100%
-  );
   flex: 0 1 auto;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   padding: 10px 20px;
   border-radius: 20px;
-  margin: 20px;
+  // margin: 20px;
   padding: 20px 40px;
+  &:hover{
+    background-color: #50465f;
+  }
   cursor: pointer;
-  img{
+  img {
     width: 100px;
   }
-  span{
+  span {
     font-size: 20px;
     margin: 5px 0;
   }
-  span:last-of-type{
-    font-size: 14px;
+  .green {
+    color: rgb(151, 255, 151);
+  }
+
+  .red {
+    color: rgb(255, 92, 92);
   }
 }
