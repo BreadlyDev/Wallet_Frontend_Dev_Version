@@ -19,13 +19,12 @@ class AuthStore {
 
   async register(user:IUSer) {
     registerService(user);
-    this.isAuthed = false
-    location.reload();
+    this.isAuthed = true;
     
   }
   logout(){
     localStorage.clear()
-    this.isAuthed = false;
+    this.isAuthed ? this.isAuthed = false : location.reload();
   }
 }
 
