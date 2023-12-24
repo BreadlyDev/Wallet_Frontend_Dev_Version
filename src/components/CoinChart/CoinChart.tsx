@@ -11,20 +11,26 @@ interface ICoinChart {
 const CoinChart = () => {
   const [dataList, setDataList] = useState<ICoinChart[]>([]);
   const [dataFullList, setDataFullList] = useState<ICoinChart[]>([]);
-  const params = useParams();
+  const params: any = useParams();
+  const authToken = localStorage.getItem("access"); // Replace with your actual authentication token
+
   useEffect(() => {
     const socket = new WebSocket(
-      `wss://wallet-dev-server-dev-sqsk.2.ie-1.fl0.io/prices/?coin_name=${params.id}USDT`
+      `wss://wallet-dev-server-dev-sqsk.2.ie-1.fl0.io/api/v1/wallet/ws/coin/price/get/?currency=${params.id}USDT&token=${authToken}`
     );
-    socket.onmessage = (event) => {
+
+    const handleSocketMessage = (event: MessageEvent) => {
       const receivedData: ICoinChart = JSON.parse(event.data);
       setDataList((prevDataList) => [...prevDataList, receivedData]);
     };
 
+    socket.addEventListener("message", handleSocketMessage);
+
     return () => {
+      socket.removeEventListener("message", handleSocketMessage);
       socket.close();
     };
-  }, []);
+  }, [params.id, authToken]);
 
   useEffect(() => {
     setDataFullList((prevDataFullList) => {
@@ -36,23 +42,17 @@ const CoinChart = () => {
 
       return updatedDataList;
     });
-
   }, [dataList]);
-  // console.log(dataFullList);
 
   const trade = dataFullList.map((item) => {
-    //@ts-ignore
-    const parsedItem = JSON.parse(item);
-    const { E, c } = parsedItem;
+    const { E, c } = item;
     const value = Number(c);
     const timestamp = Number(E);
-    const a = { time: timestamp, value };
-
-    return a;
+    return { time: timestamp, value };
   });
 
   return (
-    <div>   
+    <div>
       <div style={{ color: "white" }}>
         <Chart data={trade} />
       </div>

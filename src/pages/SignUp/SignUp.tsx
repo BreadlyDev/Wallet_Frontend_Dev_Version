@@ -5,15 +5,19 @@ import { Context } from '../../main';
 import { googleService } from '../../services/AuthService';
 
 const SignUp: React.FC = () => {
-  const [username, setUsername] = useState('');
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const {authStore} = useContext(Context).stores
+  const { authStore } = useContext(Context).stores;
 
+  const handleFirstnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFirstname(event.target.value);
+  };
 
-  const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
+  const handleLastnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLastname(event.target.value);
   };
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +30,7 @@ const SignUp: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    authStore.register(username, email, password)
+    authStore.register({firstname, lastname, email, password});
   };
 
   return (
@@ -37,8 +41,12 @@ const SignUp: React.FC = () => {
           <p className={cla.name2}>wallet</p>
         </span>
         <span className={cla.inp}>
-          <p className={cla.inputText}>Username</p>
-          <input type="text" value={username} onChange={handleUsernameChange} className={cla.inpInp} />
+          <p className={cla.inputText}>First Name</p>
+          <input type="text" value={firstname} onChange={handleFirstnameChange} className={cla.inpInp} />
+        </span>
+        <span className={cla.inp}>
+          <p className={cla.inputText}>Last Name</p>
+          <input type="text" value={lastname} onChange={handleLastnameChange} className={cla.inpInp} />
         </span>
         <span className={cla.inp}>
           <p className={cla.inputText}>Email</p>
@@ -49,10 +57,16 @@ const SignUp: React.FC = () => {
           <input type="password" value={password} onChange={handlePasswordChange} className={cla.inpInp} />
         </span>
         <div className={cla.btns}>
-          <button type='submit' className={cla.submit}>Sign up</button>
-          <button type="button" className={cla.google} onClick={googleService}>Google</button>
+          <button type="submit" className={cla.submit}>
+            Sign up
+          </button>
+          <button type="button" className={cla.google} onClick={googleService}>
+            Google
+          </button>
         </div>
-        <Link to='/login' className={cla.create}>I have an account </Link>
+        <Link to="/login" className={cla.create}>
+          I have an account
+        </Link>
       </form>
     </div>
   );

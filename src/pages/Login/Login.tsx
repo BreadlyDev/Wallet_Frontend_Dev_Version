@@ -5,13 +5,13 @@ import { Context } from '../../main';
 import { googleService } from '../../services/AuthService';
 
 const Login: React.FC = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const {authStore} = useContext(Context).stores
+  const { authStore } = useContext(Context).stores;
 
-  const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +20,7 @@ const Login: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    authStore.login(username, password)
+    authStore.login(email, password);
   };
 
   return (
@@ -31,18 +31,24 @@ const Login: React.FC = () => {
           <p className={cla.name2}>wallet</p>
         </span>
         <span className={cla.inp}>
-          <p className={cla.inputText}>Username</p>
-          <input type="text" value={username} onChange={handleUsernameChange} className={cla.inpInp} />
+          <p className={cla.inputText}>Email</p>
+          <input type="text" value={email} onChange={handleEmailChange} className={cla.inpInp} />
         </span>
         <span className={cla.inp}>
           <p className={cla.inputText}>Password</p>
           <input type="password" value={password} onChange={handlePasswordChange} className={cla.inpInp} />
         </span>
         <div className={cla.btns}>
-          <button type='submit' className={cla.submit}>Sign in</button>
-          <button type="button" className={cla.google} onClick={googleService}>Google</button>
+          <button type="submit" className={cla.submit}>
+            Sign in
+          </button>
+          <button type="button" className={cla.google} onClick={googleService}>
+            Google
+          </button>
         </div>
-        <Link to='/signup' className={cla.create}>Create new account</Link>
+        <Link to="/signup" className={cla.create}>
+          Create new account
+        </Link>
       </form>
     </div>
   );

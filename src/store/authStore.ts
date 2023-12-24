@@ -4,20 +4,20 @@ import { IUSer } from "../models/User";
 
 class AuthStore {
   isAuthed = false;
-  user:IUSer = {username:"", email:"", password:""};
+  user:IUSer = { email:"", password:"",firstname:"",lastname:""};
   constructor() {
     makeAutoObservable(this);
   }
   setUser(user: IUSer) {
     this.user = user;
   }
-  login(username: string, password: string) {
-    loginService(username, password);
+  login(email: string, password: string) {
+    loginService(email, password);
     this.isAuthed = true;
   }
 
-  register(email: string, username: string, password: string) {
-    registerService(email, username, password);
+  register(user:IUSer) {
+    registerService(user);    
     this.isAuthed = true;
   }
 }
