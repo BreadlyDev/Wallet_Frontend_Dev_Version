@@ -1,5 +1,5 @@
 import axios from "axios";
-import { api, api_min } from "../consts/api";
+import { api } from "../consts/api";
 import { IUSer } from "../models/User";
 
 export async function registerService({
@@ -9,31 +9,29 @@ export async function registerService({
   lastname,
 }: IUSer) {
   try {
-    const res = await axios.post(api + "/auth/register", {
+    const res = await axios.post(api + "/auth/register/custom", {
       email,
       password,
       firstname,
       lastname,
     });
+    localStorage.setItem("token", res.data[0].access_token);
+    localStorage.setItem("user", JSON.stringify(res.data[1]));  
     console.log(res.data);
-    console.log("success");
+    // console.log("success");
+    // loginService(email, password)
   } catch (e: any) {
     console.log("eroor: ", e?.message, e?.name);
   }
 }
 export async function loginService(email: string, password: string) {
   try {
-    const res = await axios.post(
-      api + "/auth/login",
-      { username: email, password },
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }
-    );
-    // localStorage.setItem("token", res.data[0].access_token);
-    // localStorage.setItem("user", res.data[1]);
+    const res = await axios.post(api + "/auth/login/custom", {
+      email,
+      password,
+    });
+    localStorage.setItem("token", res.data[0].access_token);
+    localStorage.setItem("user", JSON.stringify(res.data[1])); 
     console.log(res.data);
   } catch (e: any) {
     console.log(e?.message);
@@ -42,9 +40,22 @@ export async function loginService(email: string, password: string) {
 
 export async function googleService() {
   try {
-    const res = await axios.get(api_min + "/auth/google/authorize");
-    console.log(res.data);
+    const res = await axios.get(api + "/auth/authorize");
+    googleLogin(res.data.authorization_url);
+    
   } catch (e: any) {
     console.log(e?.message);
+  }
+}
+
+async function googleLogin(url:string){
+  try{
+    const res = await axios.get(url)
+    console.log(res.data);
+    
+  }
+  catch(e:any){
+    console.log(e?.message);
+    
   }
 }

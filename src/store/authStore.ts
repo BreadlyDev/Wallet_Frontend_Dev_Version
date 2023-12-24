@@ -7,18 +7,25 @@ class AuthStore {
   user:IUSer = { email:"", password:"",firstname:"",lastname:""};
   constructor() {
     makeAutoObservable(this);
+    this.logout = this.logout.bind(this)
   }
   setUser(user: IUSer) {
     this.user = user;
   }
-  login(email: string, password: string) {
+  async login(email: string, password: string) {
     loginService(email, password);
     this.isAuthed = true;
   }
 
-  register(user:IUSer) {
-    registerService(user);    
-    this.isAuthed = true;
+  async register(user:IUSer) {
+    registerService(user);
+    this.isAuthed = false
+    location.reload();
+    
+  }
+  logout(){
+    localStorage.clear()
+    this.isAuthed = false;
   }
 }
 

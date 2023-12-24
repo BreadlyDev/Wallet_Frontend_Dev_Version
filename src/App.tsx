@@ -11,12 +11,14 @@ import Swap from "./pages/Swap/Swap.tsx";
 import Redirect from "./pages/Redirct.tsx";
 import { observer } from "mobx-react-lite";
 import Coin from "./pages/Coin/Coin.tsx";
+import { useContext } from "react";
+import { Context } from "./main.tsx";
 
 function App() {
-
+  const store = useContext(Context).stores.authStore
   return (
     <>
-      {localStorage.getItem("token") ? (
+      { store.isAuthed || localStorage.getItem('token')? (
         <Layout>
           <Routes>
             <Route index element={<Home />} />
