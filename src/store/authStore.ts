@@ -13,8 +13,14 @@ class AuthStore {
     this.user = user;
   }
   async login(email: string, password: string) {
-    loginService(email, password);
-    this.isAuthed = true;
+    try {
+    const logged =  await loginService(email, password);
+    this.isAuthed = logged;
+    }
+    catch(e){
+      console.log(e);
+      
+    }
   }
 
   async register(user:IUSer) {
