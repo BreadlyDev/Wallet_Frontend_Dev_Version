@@ -2,26 +2,25 @@ import { useEffect, useState } from "react";
 import Chart from "./Chart";
 import { useParams } from "react-router-dom";
 
-interface ICoinChart {
-  s: string;
-  c: number;
-  E: string;
-}
 
 const CoinChart = () => {
-  const [dataList, setDataList] = useState<ICoinChart[]>([]);
-  const [dataFullList, setDataFullList] = useState<ICoinChart[]>([]);
-  const params: any = useParams();
-  const authToken = localStorage.getItem("access"); // Replace with your actual authentication token
+  const [dataList, setDataList] = useState<string[]>([]);
+  const [dataFullList, setDataFullList] = useState<string[]>([]);
+
+  const params = useParams();
 
   useEffect(() => {
     const socket = new WebSocket(
-      `wss://wallet-dev-server-dev-sqsk.2.ie-1.fl0.io/api/v1/wallet/ws/coin/price/get/?currency=${params.id}USDT&token=${authToken}`
+      `wss://wallet-dev-server-dev-sqsk.2.ie-1.fl0.io/ws/coin/price/?currency=${params.id}USDT`
     );
 
     const handleSocketMessage = (event: MessageEvent) => {
-      const receivedData: ICoinChart = JSON.parse(event.data);
-      setDataList((prevDataList) => [...prevDataList, receivedData]);
+      try {
+        const receivedData: string = JSON.parse(event.data);
+        setDataList((prevDataList) => [...prevDataList, receivedData]);
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+      }
     };
 
     socket.addEventListener("message", handleSocketMessage);
@@ -30,27 +29,30 @@ const CoinChart = () => {
       socket.removeEventListener("message", handleSocketMessage);
       socket.close();
     };
-  }, [params.id, authToken]);
+  }, [params.id]);
 
-  useEffect(() => {
-    setDataFullList((prevDataFullList) => {
-      const updatedDataList = [...prevDataFullList, ...dataList];
-      const maxLength = 100;
-      if (updatedDataList.length > maxLength) {
-        return updatedDataList.slice(updatedDataList.length - maxLength);
-      }
+  // useEffect(() => {
+  //   setDataFullList((prevDataFullList) => {
+  //     const updatedDataList = [...prevDataFullList, ...dataList];
+  //     const maxLength = 100;
+  //     if (updatedDataList.length > maxLength) {
+  //       return updatedDataList.slice(updatedDataList.length - maxLength);
+  //     }
 
-      return updatedDataList;
-    });
-  }, [dataList]);
-
-  const trade = dataFullList.map((item) => {
-    const { E, c } = item;
-    const value = Number(c);
-    const timestamp = Number(E);
+  //     return updatedDataList;
+  //   });
+  // }, [dataList]);
+  
+  const trade = dataList.map((item) => {
+    const newItem = item.replace(new RegExp("'", 'g'), '"')
+    const objItem = JSON.parse(newItem)
+    const {price, time} =  objItem    
+    const value = Number(price);
+    const timestamp = Number(time);
     return { time: timestamp, value };
   });
-
+  console.log(trade);
+  
   return (
     <div>
       <div style={{ color: "white" }}>

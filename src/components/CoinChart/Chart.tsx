@@ -4,16 +4,18 @@ import { Context } from "../../main";
 import { observer } from "mobx-react-lite";
 
 interface ChartProps {
-  data: { time: number; value: number }[];
+  data: { time: number; value: number }[]|null;
 }
 
-const Chart: React.FC<ChartProps> = ({ data }) => {
+const Chart: React.FC<ChartProps> = ({ data }:ChartProps) => {
+
+  
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   let chart: IChartApi | null = null;
   const { coinStore } = useContext(Context).stores;
   useEffect(() => {
     const uniqueData = Array.from(
-      new Map(data.map((item) => [item.time, item])).values()
+      new Map(data?.map((item) => [item.time, item])).values()
     );
 
     const sortedData = uniqueData.sort(
@@ -31,7 +33,7 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
         time: entry.time,
         value: entry.value,
       }));
-
+      
       lineSeries.setData(formattedData);
       coinStore.setPrice(formattedData[formattedData.length - 1]?.value);
       return () => {
