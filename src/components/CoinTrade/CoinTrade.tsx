@@ -17,6 +17,9 @@ function CoinTrade({ coin }: Props) {
     setTotalPrice(parseFloat(Number(coinStore.price * amount).toFixed(2)));  
   }, [coinStore.price]);
 
+  const user: string = String(localStorage.getItem("user"));
+  const user_id: number = JSON.parse(user).id;
+
   return (
     <div className={classes.CoinTrade}>
       <h2>Buy {coin}</h2>
@@ -30,8 +33,8 @@ function CoinTrade({ coin }: Props) {
       </div>
       <div className={classes.cost}>$ {totalPrice}</div>
       <div className={classes.btns}>
-        <button onClick={() => balanceStore.buyCoin(coin, amount, totalPrice)}>Buy</button>
-        <button onClick={() => balanceStore.sellCoin(coin, amount, totalPrice)}>Sell</button>
+        <button onClick={() => balanceStore.buyCoin(user_id, coin, amount)}>Buy</button>
+        <button onClick={() => balanceStore.sellCoin(user_id, coin, amount)}>Sell</button>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ const Chart: React.FC<ChartProps> = ({ data }: ChartProps) => {
     if (chartContainerRef.current) {
       chart = createChart(chartContainerRef.current, {
         width: 800,
-        height: 400,
+        height: 600,
       });
 
       const lineSeries: ISeriesApi<"Line"> = chart.addLineSeries();

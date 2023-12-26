@@ -11,7 +11,7 @@ const CoinChart = () => {
 
   useEffect(() => {
     const socket = new WebSocket(
-      `wss://wallet-dev-server-dev-sqsk.2.ie-1.fl0.io/ws/coin/price/?currency=${params.id}USDT`
+      `ws://127.0.0.1:8080/ws/coin/price/?currency=${params.id}USDT`
     );
 
     const handleSocketMessage = (event: MessageEvent) => {
@@ -51,7 +51,7 @@ const CoinChart = () => {
     const timestamp = Number(time);
     return { time: timestamp, value };
   });
-  console.log(trade);
+  // console.log(trade);
   
   return (
     <div>

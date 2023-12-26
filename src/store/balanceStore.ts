@@ -1,12 +1,24 @@
 import { makeAutoObservable } from "mobx";
 import {
-  asyncDecrementBalance,
-  asyncIncrementBalance,
+  asyncBuyCoin,
+  asyncSellCoin,
+  asyncSwapCoin,
   getBalance,
 } from "../services/BalanceService";
 
+interface CurrencyData {
+  name: string,
+  quantity: number,
+  id: number,
+  wallet_id: number
+} 
+
+interface Currency {
+  Currency: CurrencyData
+}
+
 class BalanceStore {
-  usd = 100000;
+  usd = 0;
   gained = 0;
   spent = 0;
   btc = 0;
@@ -22,73 +34,43 @@ class BalanceStore {
       const user_id: number = JSON.parse(user).id;
       const token = String(localStorage.getItem("token"));
       const res = await getBalance(user_id, token);
+      const currencies = res?.data.currencies;
+      currencies.forEach((element: Currency) => {
+        switch (element.Currency.name) {
+          case "USDT":
+            this.usd = element.Currency.quantity;
+            break;
+          case "BTC":
+            this.btc = element.Currency.quantity;  
+            break;
+          case "DOGE":
+            this.doge = element.Currency.quantity;  
+            break;
+          case "ETH":
+            this.eth = element.Currency.quantity;  
+            break;    
+          case null:
+            break;      
+        } 
+      });  
+      // this.usd = res?.data.currencies[0].Currency.quantity    
+
       console.log(res);
     } catch (e){
       console.log(e);
     }
   }
-  buyCoin(coin: string, amount: number, cost: number) {
-    if (this.usd - cost < 0) {
-      this.status = "not enough money";
-      return;
-    }
-    switch (coin) {
-      case "BTC":
-        this.btc += amount;
-        break;
-      case "ETH":
-        this.eth += amount;
-        break;
-      case "DOGE":
-        this.doge += amount;
-        break;
-
-      default:
-        break;
-    }
-    this.decrementBalance(cost);
+  buyCoin(user_id: number, currency: string, quantity: number) {
+    asyncBuyCoin(user_id=user_id, currency=currency, quantity=quantity);
+    this.getBalance();
   }
-  sellCoin(coin: string, amount: number, cost: number) {
-    switch (coin) {
-      case "BTC":
-        if (this.btc < amount) {
-          this.status = "not enough btc";
-          return;
-        }
-        this.btc -= amount;
-        break;
-      case "ETH":
-        if (this.eth < amount) {
-          this.status = "not enough eth";
-          return;
-        }
-        this.eth -= amount;
-        break;
-      case "DOGE":
-        if (this.doge < amount) {
-          this.status = "not enough doge";
-          return;
-        }
-        this.doge -= amount;
-        break;
-
-      default:
-        break;
-    }
-    console.log(this.status);
-
-    this.incrementBalance(cost);
+  sellCoin(user_id: number, currency: string, quantity: number) {
+    asyncSellCoin(user_id=user_id, currency=currency, quantity=quantity);
+    this.getBalance();
   }
-  incrementBalance(amount: number) {
-    this.usd += amount;
-    this.gained += amount;
-    asyncIncrementBalance(amount);
-  }
-
-  decrementBalance(amount: number) {
-    this.usd -= amount;
-    this.spent += amount;
-    asyncDecrementBalance(amount);
+  swapCoin(user_id: number, currency: string, currency_2: string, quantity: number) {
+    asyncSwapCoin(user_id=user_id, currency=currency, currency_2=currency_2, quantity=quantity);
+    this.getBalance();
   }
 }
 
