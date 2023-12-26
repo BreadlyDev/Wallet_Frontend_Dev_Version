@@ -4,12 +4,10 @@ import { Context } from "../../main";
 import { observer } from "mobx-react-lite";
 
 interface ChartProps {
-  data: { time: number; value: number }[]|null;
+  data: { time: number; value: number }[] | null;
 }
 
-const Chart: React.FC<ChartProps> = ({ data }:ChartProps) => {
-
-  
+const Chart: React.FC<ChartProps> = ({ data }: ChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   let chart: IChartApi | null = null;
   const { coinStore } = useContext(Context).stores;
@@ -33,7 +31,7 @@ const Chart: React.FC<ChartProps> = ({ data }:ChartProps) => {
         time: entry.time,
         value: entry.value,
       }));
-      
+
       lineSeries.setData(formattedData);
       coinStore.setPrice(formattedData[formattedData.length - 1]?.value);
       return () => {

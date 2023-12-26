@@ -20,6 +20,8 @@ function BalanceWidget({ value, title, usd }: Props) {
 
 function BalanceWidgetList() {
   const { balanceStore } = useContext(Context).stores;
+  balanceStore.getBalance()
+  
   return (
     <div className={classes.list}>
       <BalanceWidget title="Balance" value={balanceStore.usd} usd={true}/>

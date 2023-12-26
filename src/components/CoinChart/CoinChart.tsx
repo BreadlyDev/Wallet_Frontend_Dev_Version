@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 const CoinChart = () => {
   const [dataList, setDataList] = useState<string[]>([]);
-  const [dataFullList, setDataFullList] = useState<string[]>([]);
+  // const [dataFullList, setDataFullList] = useState<string[]>([]);
 
   const params = useParams();
 
