@@ -36,7 +36,7 @@ export async function asyncSwapCoin(user_id: number, currency: string, currency_
 export async function getBalance(user_id: number, token: string) {
   try {
     return axios.get(
-      `http://127.0.0.1:8080/api/v1/wallet/get/all/wallet/data?user_id=${user_id}`,
+      `${api}/wallet/get/all/wallet/data?user_id=${user_id}`,
       {
         headers: { Authorization: "Bearer " + token },
       }

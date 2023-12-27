@@ -11,7 +11,7 @@ const CoinChart = () => {
 
   useEffect(() => {
     const socket = new WebSocket(
-      `ws://127.0.0.1:8080/ws/coin/price/?currency=${params.id}USDT`
+      `ws://192.168.0.102:8080/ws/coin/price/?currency=${params.id}USDT`
     );
 
     const handleSocketMessage = (event: MessageEvent) => {

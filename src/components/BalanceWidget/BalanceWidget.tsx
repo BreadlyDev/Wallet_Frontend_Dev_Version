@@ -25,8 +25,6 @@ function BalanceWidgetList() {
   return (
     <div className={classes.list}>
       <BalanceWidget title="Balance" value={balanceStore.usd} usd={true}/>
-      <BalanceWidget title="Spent" value={balanceStore.spent} usd={true}/>
-      <BalanceWidget title="Gained" value={balanceStore.gained}  usd={true}/>
       <BalanceWidget title="BTC" value={balanceStore.btc} />
       <BalanceWidget title="ETH" value={balanceStore.eth} />
       <BalanceWidget title="DOGE" value={balanceStore.doge} />
