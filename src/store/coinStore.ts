@@ -1,14 +1,18 @@
-import {  makeAutoObservable } from "mobx";
+import { makeAutoObservable } from "mobx";
+import { coins_min } from "../consts/coins";
 
 class CoinStore {
-  price = 0;
+  prices: { [key: string]: number } = {};
 
   constructor() {
     makeAutoObservable(this);
+    coins_min.forEach((coin) => {
+      this.prices[coin] = 0;
+    });
   }
 
-  setPrice(price: number) {
-    this.price = price
+  setPrice(coin: string, price: number) {
+    this.prices[coin] = price
   }
 }
 
