@@ -8,6 +8,7 @@ import icx from "./icons/ICX.svg";
 import ifc from "./icons/IFactom.svg";
 import rvc from "./icons/Ravencoin.svg";
 import stm from "./icons/Steem.svg";
+import sol from "./icons/sol.svg";
 type Props = {
   coin: string;
 };
@@ -40,8 +41,11 @@ export default function CoinIcon({ coin }: Props) {
       case "RVC":
         setImage(rvc);
         break;
-      case "STM":
+      case "STEEM":
         setImage(stm);
+        break;
+      case "SOL":
+        setImage(sol);
         break;
       default:
         break;

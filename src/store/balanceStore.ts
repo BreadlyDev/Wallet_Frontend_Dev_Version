@@ -1,11 +1,11 @@
 import { action, makeAutoObservable, runInAction } from "mobx";
+import { coins_min } from "../consts/coins";
 import {
   asyncBuyCoin,
   asyncSellCoin,
   asyncSwapCoin,
   getBalance,
 } from "../services/BalanceService";
-
 interface CurrencyData {
   name: string;
   quantity: number;
@@ -18,14 +18,14 @@ interface Currency {
 }
 
 class BalanceStore {
-  usd = 0;
-  btc = 0;
-  eth = 0;
-  doge = 0;
+  balance: { [key: string]: number } = {};
   status = "";
 
   constructor() {
     makeAutoObservable(this);
+    coins_min.forEach((coin)=>{
+      this.balance[coin] = 0
+    })
   }
 
   @action
@@ -35,30 +35,17 @@ class BalanceStore {
       const user_id: number = JSON.parse(user).id;
       const token = String(localStorage.getItem("token"));
       const res = await getBalance(user_id, token);
-
+      console.log(this.balance);
+      
       runInAction(() => {
         const currencies = res?.data.currencies;
         currencies.forEach((element: Currency) => {
-          switch (element.Currency.name) {
-            case "USDT":
-              this.usd = element.Currency.quantity;
-              break;
-            case "BTC":
-              this.btc = element.Currency.quantity;
-              break;
-            case "DOGE":
-              this.doge = element.Currency.quantity;
-              break;
-            case "ETH":
-              this.eth = element.Currency.quantity;
-              break;
-            default:
-              break;
-          }
+          this.balance[element.Currency.name] = element.Currency.quantity
         });
+        
       });
 
-      console.log(res);
+      // console.log(res);
     } catch (e) {
       console.log(e);
     }

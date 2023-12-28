@@ -8,9 +8,9 @@ const Swap: React.FC = () => {
     <div className={styles.Swap}>
       <h1>Swap tokens</h1>
       <div>
-        <SwapWidget type="send" />
+        <SwapWidget type={"send"}/>
 				<img src={swap}/>
-        <SwapWidget type="recieve" />
+        <SwapWidget type={"recieve"} />
       </div>
     </div>
   );
