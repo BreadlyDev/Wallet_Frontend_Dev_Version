@@ -23,9 +23,9 @@ class BalanceStore {
 
   constructor() {
     makeAutoObservable(this);
-    coins_min.forEach((coin)=>{
-      this.balance[coin] = 0
-    })
+    coins_min.forEach((coin) => {
+      this.balance[coin] = 0;
+    });
   }
 
   @action
@@ -36,13 +36,12 @@ class BalanceStore {
       const token = String(localStorage.getItem("token"));
       const res = await getBalance(user_id, token);
       console.log(this.balance);
-      
+
       runInAction(() => {
         const currencies = res?.data.currencies;
         currencies.forEach((element: Currency) => {
-          this.balance[element.Currency.name] = element.Currency.quantity
+          this.balance[element.Currency.name] = element.Currency.quantity;
         });
-        
       });
 
       // console.log(res);
@@ -65,11 +64,12 @@ class BalanceStore {
 
   @action
   swapCoin(
-    user_id: number,
-    currency: string,
-    currency_2: string,
-    quantity: number
+    currency: string|null,
+    currency_2: string|null,
+    quantity: number|null
   ) {
+    const user: string = String(localStorage.getItem("user"));
+    const user_id: number = JSON.parse(user).id;
     asyncSwapCoin(user_id, currency, currency_2, quantity);
     this.getBalance();
   }

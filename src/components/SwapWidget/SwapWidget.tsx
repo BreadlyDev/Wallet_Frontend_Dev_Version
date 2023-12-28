@@ -6,8 +6,10 @@ type Props = {
   type: string;
   currency?: string | null;
   currency_2?: string | null;
+  quantity?: number;
   setCurrency?: ((value: string) => void) | undefined;
   setCurrency_2?: ((value: string) => void) | undefined;
+  setQuantity?: ((value: number) => void) | undefined;
 };
 
 export default function SwapWidget({
@@ -16,6 +18,8 @@ export default function SwapWidget({
   currency_2,
   setCurrency,
   setCurrency_2,
+  quantity,
+  setQuantity,
 }: Props) {
   const handleCoinChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     if (type === "send" && setCurrency) {
@@ -25,13 +29,31 @@ export default function SwapWidget({
       setCurrency_2(String(event.target.value));
     }
   };
+  const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value;
+    console.log('Input Value:', inputValue);
   
+    // Check if the input is a valid number (you can enhance this validation as needed)
+    if (/^\d*$/.test(inputValue) && setQuantity) {
+      console.log('Valid Number!');
+      setQuantity(Number(inputValue));
+    } else {
+      console.log('Invalid Number!');
+    }
+  };
+      
 
   return (
     <div>
       <div>
         <h4>You {type}</h4>
-        <input type="number" />
+        <input
+          type="text"  // Change type to "text" to allow leading zeros
+          pattern="\d*"
+          inputMode="numeric"
+          value={quantity}
+          onChange={handleQuantityChange}
+          />
       </div>
       <div>
         {type === "send"

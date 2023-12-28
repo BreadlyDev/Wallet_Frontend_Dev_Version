@@ -23,7 +23,7 @@ export async function asyncSellCoin(user_id: number, currency: string, quantity:
     console.log(e?.message);
   }
 }
-export async function asyncSwapCoin(user_id: number, currency: string, currency_2: string, quantity: number) {
+export async function asyncSwapCoin(user_id: number, currency: string|null, currency_2: string|null, quantity: number|null) {
   try{
     const type: string = "SWAP";
     const res = await axios.post(api+`/wallet/swap/currency?user_id=${user_id}`, {currency, currency_2, quantity, type});
