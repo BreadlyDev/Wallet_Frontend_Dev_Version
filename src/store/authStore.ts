@@ -24,8 +24,14 @@ class AuthStore {
   }
 
   async register(user:IUSer) {
-    registerService(user);
-    this.isAuthed = true;
+    try {
+      const logged =  await registerService(user);
+      this.isAuthed = logged;
+      }
+      catch(e){
+        console.log(e);
+        
+      }
     
   }
   logout(){

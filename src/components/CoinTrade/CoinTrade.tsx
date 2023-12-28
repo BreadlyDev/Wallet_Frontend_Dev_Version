@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import { Context } from "../../main";
 import { useContext, useState, useEffect } from "react";
 import classes from "./CoinTrade.module.scss";
+import { toJS } from "mobx";
 
 type Props = {
   coin: string;
@@ -14,8 +15,8 @@ function CoinTrade({ coin }: Props) {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    setTotalPrice(parseFloat(Number(coinStore.price * amount).toFixed(2)));  
-  }, [coinStore.price]);
+    setTotalPrice(parseFloat(Number(toJS(coinStore.prices)[coin] * amount).toFixed(2)));  
+  }, [toJS(coinStore.prices)[coin], amount]);
 
   const user: string = String(localStorage.getItem("user"));
   const user_id: number = JSON.parse(user).id;

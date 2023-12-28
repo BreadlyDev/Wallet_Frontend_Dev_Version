@@ -27,12 +27,11 @@ function BalanceWidgetList() {
   useEffect(() => {
     const fetchData = async () => {
       await balanceStore.getBalance();
-      console.log(toJS(balanceStore.balance));
-      
-      // Convert the object to an array of key-value pairs
-      const entries: [string, number][] = Object.entries(toJS(balanceStore.balance));
 
-      // Set the state with the converted array
+      const entries: [string, number][] = Object.entries(
+        toJS(balanceStore.balance)
+      );
+
       setCoins(entries);
     };
 
@@ -41,11 +40,12 @@ function BalanceWidgetList() {
 
   return (
     <div className={classes.list}>
-      <BalanceWidget title="Balance" value={balanceStore.balance['USDT']} usd={true} />
+      
       {coins.map((coin, id) => (
         <BalanceWidget
           title={String(coin[0])}
           value={Number(coin[1])}
+          usd={Boolean(coin[0]==="USDT")}
           key={id}
         />
       ))}

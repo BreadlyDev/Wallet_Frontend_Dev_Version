@@ -35,7 +35,7 @@ class BalanceStore {
       const user_id: number = JSON.parse(user).id;
       const token = String(localStorage.getItem("token"));
       const res = await getBalance(user_id, token);
-      console.log(this.balance);
+      // console.log(this.balance);
 
       runInAction(() => {
         const currencies = res?.data.currencies;
