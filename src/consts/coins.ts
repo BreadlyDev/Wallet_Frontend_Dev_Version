@@ -1,4 +1,4 @@
-export const coins_min: string[] = ["BTC", "ETH", "DOGE", "STEEM", "ICX"];
+export const coins_min: string[] = ["BTC", "ETH", "DOGE", "SOL", "STEEM", "ICX"];
 
 export const coins: string[] = [
   "DASHUSDT",
