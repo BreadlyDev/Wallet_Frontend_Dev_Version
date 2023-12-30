@@ -7,6 +7,9 @@ type Props = {
 }
 
 export default function CoinCard({coin, price}: Props) {
+  if(coin==="USDT"){
+    return null
+  }
   return (
     <Link to={`/swap/${coin}`} className={classes.CoinCard}>
       <CoinIcon coin={coin}/>

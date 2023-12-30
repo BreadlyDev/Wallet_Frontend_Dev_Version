@@ -1,6 +1,6 @@
 import CoinCard from "./CoinCard";
 import classes from './Coin.module.scss'
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../../main";
 import { toJS } from "mobx";
 export default function CoinList() {
@@ -13,7 +13,7 @@ export default function CoinList() {
       price,
     }));
     setCoins(arrayOfObjects)
-  }, 1000)
+  }, 500)
   return (
     <div className={classes.list}>
       <h2>Tokens</h2>

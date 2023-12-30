@@ -62,11 +62,16 @@ const SendWidget: React.FC<Props> = ({
           <option value="BTC" disabled>
             Select a coin
           </option>
-          {coins_min.map((coin, index) => (
-            <option key={index} value={coin}>
-              {coin}
-            </option>
-          ))}
+          {coins_min.map((coin, index) => {
+            if(coin==="USDT"){
+              return null 
+            }
+            return(
+              <option key={index} value={coin}>
+                {coin}
+              </option>
+            )
+          })}
         </select>
       </div>
     </div>

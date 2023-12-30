@@ -1,2 +1,2 @@
-export const api = "http://192.168.0.102:8080/api/v1"
-export const api_min = "http://192.168.0.102:8080"
+export const api = "https://wallet-dev-server-dev-sqsk.2.ie-1.fl0.io/api/v1"
+export const api_min = "https://wallet-dev-server-dev-sqsk.2.ie-1.fl0.io/"

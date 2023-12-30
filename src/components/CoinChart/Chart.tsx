@@ -1,46 +1,45 @@
-import React, { useEffect, useRef } from "react";
-import { createChart, IChartApi, ISeriesApi } from "lightweight-charts";
-import { observer } from "mobx-react-lite";
+  import React, { useEffect, useRef } from "react";
+  import { createChart, IChartApi, ISeriesApi } from "lightweight-charts";
 
-interface ChartProps {
-  data: { time: number; value: number }[] | null;
-}
+  interface ChartProps {
+    data: { time: number; value: number }[] | null;
+  }
 
-const Chart: React.FC<ChartProps> = ({ data }: ChartProps) => {
-  const chartContainerRef = useRef<HTMLDivElement | null>(null);
-  let chart: IChartApi | null = null;
-  useEffect(() => {
-    const uniqueData = Array.from(
-      new Map(data?.map((item) => [item.time, item])).values()
-    );
+  const Chart: React.FC<ChartProps> = ({ data }: ChartProps) => {
+    const chartContainerRef = useRef<HTMLDivElement | null>(null);
+    let chart: IChartApi | null = null;
+    useEffect(() => {
+      const uniqueData = Array.from(
+        new Map(data?.map((item) => [item.time, item])).values()
+      );
+      
+      const sortedData = uniqueData.sort(
+        (a, b) => a.time - b.time
+      );
+      
+      if (chartContainerRef.current) {
+        chart = createChart(chartContainerRef.current, {
+          width: 800,
+          height: 600,
+        });
 
-    const sortedData = uniqueData.sort(
-      (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()
-    );
+        const formattedData: any = sortedData.map((el) => ({
+          time: el.time,
+          value: el.value,
+        }));
+        const lineSeries: ISeriesApi<"Line"> = chart.addLineSeries();
 
-    if (chartContainerRef.current) {
-      chart = createChart(chartContainerRef.current, {
-        width: 800,
-        height: 600,
-      });
+        lineSeries.setData(formattedData);
+        return () => {
+          if (chart) {
+            chart.remove(); 
+            chart = null;
+          }
+        };  
+      }
+    }, [data]);
 
-      const lineSeries: ISeriesApi<"Line"> = chart.addLineSeries();
-      const formattedData: any = sortedData.map((entry) => ({
-        time: entry.time,
-        value: entry.value,
-      }));
+    return <div ref={chartContainerRef} />;
+  };
 
-      lineSeries.setData(formattedData);
-      return () => {
-        if (chart) {
-          chart.remove();
-          chart = null;
-        }
-      };
-    }
-  }, [data]);
-
-  return <div ref={chartContainerRef} />;
-};
-
-export default observer(Chart);
+  export default Chart;
