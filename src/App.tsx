@@ -18,33 +18,38 @@ function App() {
   const store = useContext(Context).stores;
   useEffect(() => {
     const btc_socket = new WebSocket(
-      `wss://stream.binance.com:9443/ws/btcusdt@miniTicker`
+      `wss://wallet-rndr.onrender.com/ws/coin/price/?currency=BTCUSDT`
     );
     const eth_socket = new WebSocket(
-      `wss://stream.binance.com:9443/ws/ethusdt@miniTicker`
+      `wss://wallet-rndr.onrender.com/ws/coin/price/?currency=ETHUSDT`
     );
 
     const doge_socket = new WebSocket(
-      `wss://stream.binance.com:9443/ws/dogeusdt@miniTicker`
+      `wss://wallet-rndr.onrender.com/ws/coin/price/?currency=DOGEUSDT`
     );
 
     const sol_socket = new WebSocket(
-      `wss://stream.binance.com:9443/ws/solusdt@miniTicker`
+      `wss://wallet-rndr.onrender.com/ws/coin/price/?currency=SOLUSDT`
     );
 
     const steem_socket = new WebSocket(
-      `wss://stream.binance.com:9443/ws/steemusdt@miniTicker`
+      `wss://wallet-rndr.onrender.com/ws/coin/price/?currency=STEEMUSDT`
     );
 
     const icx_socket = new WebSocket(
-      `wss://stream.binance.com:9443/ws/icxusdt@miniTicker`
+      `wss://wallet-rndr.onrender.com/ws/coin/price/?currency=ICXUSDT`
     );
 
     const handleSocketMessage = (event: MessageEvent) => {
       try {
         const res = JSON.parse(event.data);
-        const symbol = res.s.slice(0, -4);
-        const price =Number(Number(res.c).toFixed(2));
+
+        const pure_value = JSON.parse(res.replace(new RegExp("'", "g"), '"'));
+        store.coinStore.setPrice(pure_value.symbol.slice(0, -4), pure_value.price);
+        
+        const symbol = pure_value.symbol.slice(0, -4);
+        const price =Number(Number(pure_value.price).toFixed(2));
+        // console.log(price, symbol);
         store.coinStore.setPrice(symbol, price);
       } catch (error) {
         console.error("Error parsing JSON:", error);

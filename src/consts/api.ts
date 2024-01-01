@@ -1,2 +1,2 @@
-export const api = "https://wallet-dev-server-dev-sqsk.2.ie-1.fl0.io/api/v1"
-export const api_min = "https://wallet-dev-server-dev-sqsk.2.ie-1.fl0.io/"
+export const api = "https://wallet-rndr.onrender.com/api/v1"
+export const api_min = "https://wallet-rndr.onrender.com/"

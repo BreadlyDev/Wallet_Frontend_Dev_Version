@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Chart from "./Chart";
 import { useParams } from "react-router-dom";
 
@@ -7,9 +7,9 @@ const CoinChart = () => {
 
   const params = useParams();
 
-  useEffect(() => {
+  setInterval(() => {
     const socket = new WebSocket(
-      `wss://stream.binance.com:9443/ws/${(params.id)?.toLowerCase()}usdt@miniTicker`
+      `wss://wallet-rndr.onrender.com/ws/coin/price/?currency=${params.id}USDT`
     );
 
     const handleSocketMessage = (event: MessageEvent) => {
@@ -24,16 +24,18 @@ const CoinChart = () => {
     };
 
     socket.addEventListener("message", (e)=>handleSocketMessage(e));
-  }, [params.id]);
+  }, 1000)
 
   const trade = dataList.map((item) => {
-    // const newItem = item.replace(new RegExp("'", "g"), '"');
-    // const objItem = JSON.parse(String(newItem));
-    const { c, E } = item;
-    const value = Number(c);
-    const time = Number(E);
+    const newItem = item.replace(new RegExp("'", "g"), '"');
+    const objItem = JSON.parse(String(newItem));
+    // console.log(objItem);
     
-    return { time, value };
+    const { price, time } = objItem;
+    const value = Number(price);
+    const time_var = Number(time);
+    
+    return { time:time_var, value };
   });
 
   return (
