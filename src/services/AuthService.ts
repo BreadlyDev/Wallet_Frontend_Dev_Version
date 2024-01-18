@@ -9,6 +9,13 @@ export async function registerService({
   lastname,
 }: IUSer): Promise<boolean> {
   try {
+    console.log({
+      email,
+      password,
+      firstname,
+      lastname,
+    }, api);
+    
     const res = await axios.post(api + "/auth/register/custom", {
       email,
       password,

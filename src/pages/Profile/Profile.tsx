@@ -7,7 +7,7 @@ const Profile: React.FC = () => {
     return (
         <div className={styles.Profile}>
             <ProfileSection/>
-            <ProfileWidget/>
+            {/* <ProfileWidget/> */}
         </div>
     )
 }

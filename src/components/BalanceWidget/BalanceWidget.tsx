@@ -10,7 +10,7 @@ type Props = {
   usd?: boolean;
 };
 
-function BalanceWidget({ value, title, usd }: Props) {
+const  BalanceWidget = observer(({ value, title, usd }: Props) => {
   return (
     <div className={classes.BalanceWidget}>
       <span>{title}</span>
@@ -19,7 +19,7 @@ function BalanceWidget({ value, title, usd }: Props) {
       </span>
     </div>
   );
-}
+})
 function BalanceWidgetList() {
   const { balanceStore } = useContext(Context).stores;
   const [coins, setCoins] = useState<[string | number, string | number][]>([]);

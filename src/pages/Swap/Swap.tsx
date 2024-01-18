@@ -7,9 +7,9 @@ import ReceiveWidget from "../../components/SwapWidget/ReceiveWidget";
 
 const Swap: React.FC = () => {
   const store = useContext(Context).stores.balanceStore;
-  const [currency, setCurrency] = useState<string | null>(null);
-  const [currency_2, setCurrency_2] = useState<string | null>(null);
-  const [quantity, setQuantity] = useState<number | null>(0);
+  const [currency, setCurrency] = useState<string>("");
+  const [currency_2, setCurrency_2] = useState<string>("");
+  const [quantity, setQuantity] = useState<number >(0);
   const [quantity_2, setQuantity_2] = useState<number | null>(0);
   function swapCoins() {
     store.swapCoin(currency, currency_2, quantity);

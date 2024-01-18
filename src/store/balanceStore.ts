@@ -52,22 +52,26 @@ class BalanceStore {
 
   @action
   buyCoin(user_id: number, currency: string, quantity: number) {
+    this.balance[currency] += quantity;
     asyncBuyCoin(user_id, currency, quantity);
     this.getBalance();
   }
 
   @action
   sellCoin(user_id: number, currency: string, quantity: number) {
+    this.balance[currency] -= quantity;
     asyncSellCoin(user_id, currency, quantity);
     this.getBalance();
   }
 
   @action
   swapCoin(
-    currency: string|null,
-    currency_2: string|null,
-    quantity: number|null
+    currency: string,
+    currency_2: string,
+    quantity: number
   ) {
+    this.balance[currency] -=quantity;
+    this.balance[currency_2] +=quantity
     const user: string = String(localStorage.getItem("user"));
     const user_id: number = JSON.parse(user).id;
     asyncSwapCoin(user_id, currency, currency_2, quantity);
